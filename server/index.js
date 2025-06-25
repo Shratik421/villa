@@ -17,12 +17,26 @@ import userRouter from "./routes/user.route.js";
 import uploadRouter from "./routes/upload.route.js";
 
 const app = express();
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.FRONTEND_URL,
-  })
-);
+
+const corsOptions = {
+  origin: [
+    "http://65.1.188.159",
+    "https://65.1.188.159",
+    "https://65.1.188.159/:5173",
+    process.env.FRONTEND_URL,
+    "http://lonavalastayvilla.in",
+    "https://www.lonavalastayvilla.in/",
+    "https://lonavalastayvilla.in/",
+  ],
+
+  // origin: process.env.FRONTEND_URL,
+
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("dev"));

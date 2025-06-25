@@ -9,10 +9,8 @@ if (!process.env.MONGODB_URL) {
 
 async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGODB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URL);
+    console.log("Databse connected successfully");
   } catch (error) {
     console.log("mongodb connection error", error.message);
     process.exit(1);
